@@ -5,49 +5,43 @@
  */
 
 import React, { Component } from 'react';
-import {
+import {  
   AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-
-export default class react_native extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  StyleSheet,  
+  View,  
+  WebView,  
+  Dimensions,  
+} from 'react-native';  
+  
+const {width, height} = Dimensions.get('window');  
+  
+const url = "http://www.58.com";  
+export default class react_native extends Component {  
+  
+  constructor(props) {  
+    super(props);  
+  }  
+  
+  render() {  
+    return (  
+      <View style={styles.container}>  
+        <WebView  
+          style={{width:width,height:height-20,backgroundColor:'gray'}}  
+          source={{uri:url,method: 'GET'}}  
+          javaScriptEnabled={true}  
+          domStorageEnabled={true}  
+          scalesPageToFit={false}  
+          />  
+      </View>  
+    );  
+  }  
+}  
+  
+const styles = StyleSheet.create({  
+  container: {  
+    flex: 1,  
+    backgroundColor: '#f2f2f2'  
+  },  
+}); 
 
 AppRegistry.registerComponent('react_native', () => react_native);
